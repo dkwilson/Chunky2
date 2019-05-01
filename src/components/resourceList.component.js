@@ -4,9 +4,9 @@ import axios from 'axios';
 
 const Resource = props => (
     <tr>
-        <td>{props.resource.res_description}</td>
-        <td>{props.resource.res_responsible}</td>
-        <td>{props.resource.res_priority}</td>
+        <td className={props.resource.res_completed ? 'completed' : ''}>{props.resource.res_description}</td>
+        <td className={props.resource.res_completed ? 'completed' : ''}>{props.resource.res_link}</td>
+        <td className={props.resource.res_completed ? 'completed' : ''}>{props.resource.res_priority}</td>
         <td>
             <Link to={"/edit/"+props.resource._id}>Edit</Link>
         </td>
