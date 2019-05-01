@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component } from '../../node_modules/react';
+import axios from 'axios';
 
 export default class AddResource extends Component {
 
@@ -44,13 +45,23 @@ export default class AddResource extends Component {
         console.log(`Res Link: ${this.state.res_link}`);
         console.log(`Res Priority: ${this.state.res_priority}`);
         
-        this.setState({
-            res_description: '',
-            res_link: '',
-            res_priority: '',
-            res_completed: false
-        })
-    }
+        const newResource = {
+            res_description: this.state.res_description,
+            res_link: this.state.res_link,
+            res_priority: this.state.res_priority,
+            res_completed: this.state.res_completed
+    };
+
+    axios.post('http://localhost:4000/resource/add', newResource)
+        .then(res => console.log(res.data));
+
+    this.setState({
+        res_description: '',
+        res_link: '',
+        res_priority: '',
+        res_completed: false
+    })
+}
 
     render() {
         return (
