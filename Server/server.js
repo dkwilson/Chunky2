@@ -11,9 +11,10 @@ let Resource = require('./model/res.model');
 app.use(cors());
 app.use(bodyParser.json());
 
-
-mongoose.connect('mongodb://127.0.0.1:27017/resources', { useNewUrlParser: true });
+var MONGODB_URI = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/resources';
 const connection = mongoose.connection;
+
+mongoose.connect(MONGODB_URI);
 
 connection.once('open', function() {
     console.log("MongoDB database connection established successfully");
